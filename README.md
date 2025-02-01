@@ -1,0 +1,6 @@
+# pptools
+
+[![Stable](https://img.shields.io/badge/docs-stable-blue.svg)](https://docsteveharris.github.io/pptools.jl/stable/)
+[![Dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://docsteveharris.github.io/pptools.jl/dev/)
+[![Build Status](https://github.com/docsteveharris/pptools.jl/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/docsteveharris/pptools.jl/actions/workflows/CI.yml?query=branch%3Amain)
+[![Coverage](https://codecov.io/gh/docsteveharris/pptools.jl/branch/main/graph/badge.svg)](https://codecov.io/gh/docsteveharris/pptools.jl)
