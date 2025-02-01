@@ -11,7 +11,8 @@ include("utils/utils.jl")
 using .utils
 
 # Export specific functions so they can be accessed directly
-export foo
+# e.g.
+# export foobar
 
 # Top level defined functions
 hi() = "Hello World!"

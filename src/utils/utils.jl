@@ -2,13 +2,14 @@ module utils
 
 using Printf
 
-export foo, hello
+export foobar, hello
 
 """
 Foobar function
+Returns foo by default unless argument is false
 """
-function foo()
-    return "bar"
+function foobar(;foo=true)
+    return foo ? "foo" : "bar"
 end
 
 function hello(x::String; verbose=true)
