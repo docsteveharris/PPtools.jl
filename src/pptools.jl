@@ -1,4 +1,4 @@
-module pptools # Define the module
+module PPtools # Define the module
 
 # Define versions and dependencies
 # e.g. 
