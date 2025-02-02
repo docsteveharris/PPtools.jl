@@ -13,6 +13,7 @@ using .utils
 # Export specific functions so they can be accessed directly
 # e.g.
 # export foobar
+export number_to_text
 
 # Top level defined functions
 hi() = "Hello World!"
