@@ -1,6 +1,6 @@
 module utils
 
-using Formatting
+using Format
 
 export foobar
 export hello
