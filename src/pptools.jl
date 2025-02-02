@@ -14,6 +14,7 @@ using .utils
 # e.g.
 # export foobar
 export number_to_text
+export read_sql_script
 
 # Top level defined functions
 hi() = "Hello World!"

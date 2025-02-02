@@ -22,3 +22,16 @@ end
     @assert PPtools.utils.foobar(foo=false) == "bar"
     @assert PPtools.hello("Alice", verbose=false) == "Hello, Alice!"
 end
+
+@testitem "my read_sql_script" begin
+    # Test the read_sql_script function
+    # Note: this is a basic test and does not cover all edge cases
+    # For example, it does not test the remove_comments and split_statements options
+    # It also does not test the error handling
+    # It is recommended to write more comprehensive tests for production code
+    test2_txt = """SELECT * FROM users;
+    UPDATE users SET status = 'active';"""
+
+    @test read_sql_script("./data/test1.sql") == "SELECT * FROM table"
+    @test read_sql_script("./data/test2.sql"; remove_comments=true) == test2_txt
+end
