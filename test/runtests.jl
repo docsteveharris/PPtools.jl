@@ -35,3 +35,15 @@ end
     @test read_sql_script("./data/test1.sql") == "SELECT * FROM table"
     @test read_sql_script("./data/test2.sql"; remove_comments=true) == test2_txt
 end
+
+@testitem "my sqlite_datetime_to_date" begin
+    # Test the sqlite_datetime_to_date function
+    using Dates
+    # Basic ⁠DateTime is timezone-naive. If you need timezone awareness, you
+    # should use the ⁠TimeZones.jl package
+    @assert sqlite_datetime_to_date("2021-01-01 12:00:00") == DateTime(2021, 1, 1, 12, 0, 0)
+end
+
+@testitem "Check Concept Codes" begin
+    @assert ConceptCodes.proc_codes.blood_culture == "LAB10228"
+end
