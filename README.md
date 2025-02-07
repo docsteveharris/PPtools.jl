@@ -20,6 +20,13 @@ Preface any scratch of dev scripts with
 using pptools
 ```
 
+To use the development version directly from GitHub, you can add the package using:
+
+```julia
+using Pkg
+Pkg.add(url="https://github.com/docsteveharris/pptools.jl.git")
+```
+
 [![Stable](https://img.shields.io/badge/docs-stable-blue.svg)](https://docsteveharris.github.io/pptools.jl/stable/)
 [![Dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://docsteveharris.github.io/pptools.jl/dev/)
 [![Build Status](https://github.com/docsteveharris/pptools.jl/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/docsteveharris/pptools.jl/actions/workflows/CI.yml?query=branch%3Amain)
