@@ -1,4 +1,4 @@
-# Probabilistic Programming Tools
+# Probabilistic Prescribing Tools
 
 A mixture of tools for working on probabilstic programming tasks at UCLH.
 

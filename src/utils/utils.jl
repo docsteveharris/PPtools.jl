@@ -6,6 +6,16 @@ export foobar
 export hello
 export number_to_text
 export read_sql_script
+export showall
+
+"""
+Inspect an object in the REPL without display limits
+(e.g. arrays, dataframes etc. typically show the first and last items with an ellipsis operator in between)
+"""
+function showall(x)
+    show(IOContext(stdout, :limit=>false), x)
+    println()
+end
 
 """
 Read and clean a SQL script file

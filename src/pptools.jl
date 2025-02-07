@@ -21,6 +21,7 @@ export number_to_text
 export read_sql_script
 export sqlite_datetime_to_date
 export ConceptCodes
+export showall
 
 # Top level defined functions
 hi() = "Hello World!"
