@@ -7,6 +7,33 @@ export hello
 export number_to_text
 export read_sql_script
 export showall
+export cd_up_path_by
+
+"""
+`cd` up the current path by n 'nested' directories 
+
+Use the terminal fragment of the expected path to confirm result
+
+```julia
+cd_up_path_by(1, "ProbabilisticPrescribing/winston")
+```
+"""
+function cd_up_path_by(nested::Int, assert_path_fragment::String; verbose=true)
+    # Navigate up by nested directories from current directory
+    cd(join(fill("..", nested), "/"))
+
+    # Confirm you're where you think you should be
+    # Walk backwards up the path checking the fragment components
+    this_path = (reverse ∘ splitpath)(pwd())  
+    for (i,x) in (enumerate ∘ reverse ∘ splitpath)(assert_path_fragment)
+        println("$i $x $(this_path[i])")
+        @assert this_path[i] == x  
+    end
+
+    if verbose
+        @show(pwd())                
+    end
+end
 
 """
 Inspect an object in the REPL without display limits

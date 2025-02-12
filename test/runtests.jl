@@ -2,6 +2,7 @@ using PPtools
 using Test
 using TestItems
 using TestItemRunner
+using PPtools.utils
 
 # Note the use of @testitem macro rather than @testset (better integration with VSCode)
 # https://www.julia-vscode.org/docs/stable/userguide/testitems/
@@ -21,6 +22,8 @@ end
     @assert PPtools.utils.foobar() == "foo"
     @assert PPtools.utils.foobar(foo=false) == "bar"
     @assert PPtools.hello("Alice", verbose=false) == "Hello, Alice!"
+
+    @assert PPtools.utils.cd_up_path_by(0, "PPtools.jl")
 end
 
 @testitem "my read_sql_script" begin
@@ -46,4 +49,36 @@ end
 
 @testitem "Check Concept Codes" begin
     @assert ConceptCodes.proc_codes.blood_culture == "LAB10228"
+end
+
+@testitem "utils.cd_up_path_by" begin
+    # Save the original directory to restore it after tests
+    original_dir = pwd()
+    
+    try
+        # Create a temporary directory structure for testing
+        temp_dir = mktempdir()
+        nested_path = joinpath(temp_dir, "level1", "level2", "level3")
+        mkpath(nested_path)
+        
+        # Change to the deepest directory
+        cd(nested_path)
+        
+        # Test moving up 1 level
+        cd_up_path_by(1, "level1/level2"; verbose=false)
+        @test basename(pwd()) == "level2"
+        
+        # Test moving up 2 levels
+        cd(nested_path)  # Go back to deepest level
+        cd_up_path_by(2, "level1"; verbose=false)
+        @test basename(pwd()) == "level1"
+        
+        # Test error case - invalid path fragment
+        cd(nested_path)  # Go back to deepest level
+        @test_throws AssertionError cd_up_path_by(1, "invalid/path"; verbose=false)
+        
+    finally
+        # Always return to the original directory
+        cd(original_dir)
+    end
 end

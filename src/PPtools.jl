@@ -22,6 +22,7 @@ export read_sql_script
 export sqlite_datetime_to_date
 export ConceptCodes
 export showall
+export cd_up_path_by
 
 # Top level defined functions
 hi() = "Hello World!"
