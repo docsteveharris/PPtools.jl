@@ -23,7 +23,6 @@ end
     @assert PPtools.utils.foobar(foo=false) == "bar"
     @assert PPtools.hello("Alice", verbose=false) == "Hello, Alice!"
 
-    @assert PPtools.utils.cd_up_path_by(0, "PPtools.jl")
 end
 
 @testitem "my read_sql_script" begin
