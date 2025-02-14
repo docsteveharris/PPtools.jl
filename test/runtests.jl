@@ -74,7 +74,7 @@ end
         
         # Test error case - invalid path fragment
         cd(nested_path)  # Go back to deepest level
-        @test_throws AssertionError cd_up_path_by(1, "invalid/path"; verbose=false)
+        @test_throws ErrorException cd_up_path_by(1, "invalid/path"; verbose=false)
         
     finally
         # Always return to the original directory

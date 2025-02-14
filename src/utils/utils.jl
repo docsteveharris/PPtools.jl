@@ -9,6 +9,19 @@ export read_sql_script
 export showall
 export cd_up_path_by
 
+
+function _confirm_path_fragment(assert_path_fragment::String)
+    # Confirm you're where you think you should be
+    # Walk backwards up the path checking the fragment components
+    this_path = (reverse ∘ splitpath)(pwd())  
+    for (i,x) in (enumerate ∘ reverse ∘ splitpath)(assert_path_fragment)
+        ## println("$i $x $(this_path[i])")
+        ## @assert this_path[i] == x  "Expected $(this_path[i]) to be $x"
+        this_path[i] != x && return false
+    end
+    return true
+end
+
 """
 `cd` up the current path by n 'nested' directories 
 
@@ -19,20 +32,18 @@ cd_up_path_by(1, "ProbabilisticPrescribing/winston")
 ```
 """
 function cd_up_path_by(nested::Int, assert_path_fragment::String; verbose=true)
+    _confirm_path_fragment(assert_path_fragment) && return
     # Navigate up by nested directories from current directory
-    cd(join(fill("..", nested), "/"))
-
-    # Confirm you're where you think you should be
-    # Walk backwards up the path checking the fragment components
-    this_path = (reverse ∘ splitpath)(pwd())  
-    for (i,x) in (enumerate ∘ reverse ∘ splitpath)(assert_path_fragment)
-        println("$i $x $(this_path[i])")
-        @assert this_path[i] == x  
+    try
+        cd(join(fill("..", nested), "/"))
+    catch e
+        throw(ErrorException("Failed to navigate to up $nested levels from $(pwd())"))
     end
 
-    if verbose
-        @show(pwd())                
+    if !_confirm_path_fragment(assert_path_fragment)
+        throw(ErrorException("Failed to navigate to $assert_path_fragment; current path is $(pwd())"))
     end
+
 end
 
 """
